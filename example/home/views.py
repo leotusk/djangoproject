@@ -101,14 +101,12 @@ def logout(request):
 
 def generate_qr(user_id):
     tt = time.time()
-    FilePath = "C:\\Users\\hongik\\project\\example\\static\\" + user_id + ".png"
+    FilePath = os.getcwd() + "/static/" + user_id + ".png"
 
     # QR 코드 생성
     qr = qrcode.QRCode(version=1, box_size=10, border=5)
-    odata1 = int(str(user_id)[2:6])
-    odata2 = int(str(tt)[7:10])
-    cdata1 = (odata1**931)%3233
-    cdata2 = (odata2**931)%3233
+    cdata1 = user_id
+    cdata2 = tt
 
     qr.add_data(cdata1)
     qr.add_data(' ')
